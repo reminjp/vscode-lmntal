@@ -1,0 +1,26 @@
+{
+    "name": "lmntal",
+    "displayName": "LMNtal",
+    "description": "LMNtal language support for Visual Studio Code",
+    "version": "0.0.1",
+    "publisher": "remin",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "lmn",
+            "aliases": ["LMNtal", "lmn"],
+            "extensions": ["lmn"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "lmn",
+            "scopeName": "text.lmntal",
+            "path": "./syntaxes/lmn.tmLanguage.json"
+        }]
+    }
+}
