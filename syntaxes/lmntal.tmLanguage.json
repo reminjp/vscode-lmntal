@@ -1,0 +1,163 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "LMNtal",
+	"patterns": [
+		{
+			"include": "#source"
+		}
+	],
+	"repository": {
+		"source": {
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#processes"
+				}
+			]
+		},
+		"processes": {
+			"patterns": [
+				{
+					"include": "#brackets"
+				},
+				{
+					"name": "constant.numeric.lmntal",
+					"match": "[+-]?[0-9]+[\\.]?[0-9]*[eE]?[+-]?[0-9]*"
+				},
+				{
+					"name": "keyword.control.lmntal",
+					"match": "(:-|\\||\\bmodule\\b)"
+				},
+				{
+					"name": "keyword.operator.lmntal",
+					"match": "(><)"
+				},
+				{
+					"name": "keyword.operator.lmntal",
+					"match": "(=<\\.|>=\\.|<\\.|>\\.|=:=\\.|=\\\\=\\.|=<|>=|<|>|=:=|=\\\\=)"
+				},
+				{
+					"name": "keyword.operator.lmntal",
+					"match": "(\\\\==|==|\\\\=|=)"
+				},
+				{
+					"name": "keyword.operator.lmntal",
+					"match": "(\\+\\.|-\\.|\\*\\.|\/\\.|\\+|-|\\*|\/|\\bmod\\b)"
+				},
+				{
+					"name": "support.function.lmntal",
+					"match": "\\b(int|float|unary|ground|uniq|new|hlink|num)\\b"
+				},
+				{
+					"name": "entity.name.section.lmntal",
+					"match": "\\b[a-zA-Z0-9_]+@@"
+				},
+				{
+					"name": "entity.name.function.lmntal",
+					"match": "(\\$|@)[a-zA-Z0-9_]+\\b"
+				},
+				{
+					"name": "entity.name.lmntal",
+					"match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+				},
+				{
+					"name": "string.unquoted.lmntal",
+					"match": "\\b[a-z][a-zA-Z0-9_]*\\b"
+				}
+			]
+		},
+		"brackets": {
+			"patterns": [
+				{
+					"begin": "\\(",
+					"end": "\\)",
+					"patterns": [
+						{
+							"include": "#source"
+						}
+					]
+				},
+				{
+					"begin": "\\{",
+					"end": "\\}",
+					"patterns": [
+						{
+							"include": "#source"
+						}
+					]
+				},
+				{
+					"begin": "\\[",
+					"end": "\\]",
+					"patterns": [
+						{
+							"match": "\\|"
+						},
+						{
+							"include": "#source"
+						}
+					]
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.block.lmntal",
+					"begin": "\\\/\\*",
+					"end": "\\*\\\/"
+				},
+				{
+					"name": "comment.line.double-slash.lmntal",
+					"begin": "\/\/",
+					"end": "\\n"
+				},
+				{
+					"name": "comment.line.percetage.lmntal",
+					"begin": "%",
+					"end": "\\n"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.single.lmntal",
+					"begin": "'",
+					"end": "'",
+					"patterns": [{
+							"include": "#escapes"
+					}]
+				},
+				{
+					"name": "string.quoted.double.lmntal",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [{
+							"include": "#escapes"
+					}]
+				},
+				{
+					"name": "string.quoted.other.lmntal",
+					"begin": "\\[:",
+					"end": ":\\]",
+					"patterns": [{
+							"include": "#escapes"
+					}]
+				}
+			]
+		},
+		"escapes": {
+			"patterns": [{
+					"name": "constant.character.escape.lmntal",
+					"match": "\\\\."
+			}]
+		}
+	},
+	"scopeName": "text.lmntal"
+}
